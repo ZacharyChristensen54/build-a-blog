@@ -74,11 +74,17 @@ class MainHandler(Handler):
     def get(self):
         self.render_front_page()
     
-    
-
+class ViewPostHandler(webapp2.RequestHandler):
+    def get(self, id):
+        try:
+            post = Blog.get_by_id(int(id))
+            self.response.write(post.title + '<br>'*2 + post.blog_content)
+        except:
+            self.response.write("Blog with ID:%s doesn't exist" % id)
         
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/newpost', MakePost)
+    ('/newpost', MakePost),
+    webapp2.Route('/blog/<id:\d+>', ViewPostHandler)
 ], debug=True)
