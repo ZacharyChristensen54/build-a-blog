@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+    DontLookHere
+{% endblock %}
+
+{% block style %}
+    .blog-form {
+        text-align: center;
+    }
+
+{% endblock %}
+
+{% block header %}
+    Anything you want. Write it
+{% endblock %}
+
+{% block content %}
+    <form method='post' class='blog-form'>
+        <table>
+            <tr class='entry-box'>
+                <td>
+                    <label class='label'>Title</label>
+                </td>
+                <td>
+                    <input type='text' name='title' value={{title}}>
+                </td>
+                <td class='error'>{{title_error}}</td>
+            </tr>
+        </table>
+        <table>
+            <tr class='entry-box'>
+                <td class='label'><label>This is for blog text</label></td>
+                <td>
+                    {% if not blog_content %}
+                        <textarea name='blog_content'>What's your story?</textarea>
+                    {% endif %}
+                    {% if blog_content %}
+                        <textarea name='blog_content'>{{blog_content}}</textarea>
+                    {% endif %}
+                </td> 
+                <td class='error'>{{content_error}}</td>
+            </tr>
+        </table>
+            <input type='submit'>
+    </form>
+{% endblock %}

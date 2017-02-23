@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    bloggy
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block header %}
+    <form action='/newpost' method='get' class='redirect'>
+        <td>
+            <tr>Would you like to add your very own blog??</tr>
+            <tr><input type='submit' value='Then Click Here!'></tr>
+        </td>
+    </form>
+    
+    <br>
+
+    Do you think these are recent??
+{% endblock %}
+
+{% block content %}
+
+    {% for blog in blogz %}
+        <div class='blog'>
+            <p class='blog-title'>{{blog.title}}</p>
+            <pre class='blog-content'>{{blog.blog_content}}</pre>
+        </div>
+    {% endfor %}
+
+{% endblock %}
