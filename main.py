@@ -27,6 +27,7 @@ class Blog(db.Model):
     title = db.StringProperty(required = True)
     blog_content = db.TextProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
+    id = db.IntegerProperty()
 
 class Handler(webapp2.RequestHandler):
     def write(self, *args, **kwargs):
@@ -53,7 +54,7 @@ class MakePost(Handler):
         if title and blog_content:
             b = Blog(title = title, blog_content = blog_content)
             b.put()
-            self.redirect('/')
+            self.redirect('/blog/%s' % b.key().id())
         else:
             if not title:
                 title_error = 'There must be a title'
@@ -69,7 +70,10 @@ class MakePost(Handler):
 class MainHandler(Handler):
     def render_front_page(self):
         blogz = db.GqlQuery('SELECT * FROM Blog ORDER BY created DESC LIMIT 5')
-        self.render('front_page.html', blogz=blogz)
+        list_of_blog_ids = []
+        for blog in blogz:
+            list_of_blog_ids += [blog.key().id()]
+        self.render('front_page.html', blogz=blogz, list_of_blog_ids=list_of_blog_ids)
 
     def get(self):
         self.render_front_page()
