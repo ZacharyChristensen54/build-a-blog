@@ -5,10 +5,8 @@
 {% endblock %}
 
 {% block style %}
-    .blog-form {
-        text-align: center;
-    }
-
+    
+    
 {% endblock %}
 
 {% block header %}
@@ -16,21 +14,18 @@
 {% endblock %}
 
 {% block content %}
-    <form method='post' class='blog-form'>
+    <form method='post'>
         <table>
-            <tr class='entry-box'>
-                <td>
-                    <label class='label'>Title</label>
-                </td>
+            <tr>
+                <td class='label'>Title</td>
                 <td>
                     <input type='text' name='title' value={{title}}>
                 </td>
                 <td class='error'>{{title_error}}</td>
             </tr>
-        </table>
-        <table>
-            <tr class='entry-box'>
-                <td class='label'><label>This is for blog text</label></td>
+            
+            <tr>
+                <td class='label'>This is for blog text</td>
                 <td>
                     {% if not blog_content %}
                         <textarea name='blog_content'>What's your story?</textarea>
@@ -42,6 +37,6 @@
                 <td class='error'>{{content_error}}</td>
             </tr>
         </table>
-            <input type='submit'>
+        <input type='submit'>
     </form>
 {% endblock %}

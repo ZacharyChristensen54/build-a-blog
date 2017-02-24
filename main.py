@@ -27,7 +27,6 @@ class Blog(db.Model):
     title = db.StringProperty(required = True)
     blog_content = db.TextProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
-    id = db.IntegerProperty()
 
 class Handler(webapp2.RequestHandler):
     def write(self, *args, **kwargs):
@@ -39,6 +38,10 @@ class Handler(webapp2.RequestHandler):
 
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw)) 
+
+# def get_posts(limit, offset):
+#     posts = db.GqlQuery('SELECT * FROM Blog LIMIT %d OFFSET %d ORDER BY created DESC' % (limit, offset))
+#     return posts
 
 class MakePost(Handler):
     def get(self):

@@ -4,17 +4,28 @@
     <head>
     
         <title>{% block title %}{% endblock %}</title>
-        <style>
+        <style type='text/css'>
             .error {
                 color: red;
             }
+            .label {
+                text-align: right;
+            }
+            .nav-links {
+                text-align: center;
+            }
+    
             {% block style %}{% endblock %}
         </style>
 
     </head>
     
     <body>
-
+       <div class='nav-links'>
+            <a href='/'><pre>  Home  </pre></a>
+            <a href='/newpost'><pre>  Make a new post  </pre><a>
+        </div>
+        
         <h1>{% block header %}{% endblock %}</h1>
         
         {% block content %}
