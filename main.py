@@ -39,10 +39,6 @@ class Handler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw)) 
 
-# def get_posts(limit, offset):
-#     posts = db.GqlQuery('SELECT * FROM Blog LIMIT %d OFFSET %d ORDER BY created DESC' % (limit, offset))
-#     return posts
-
 class MakePost(Handler):
     def get(self):
         self.render('add_blog.html')
