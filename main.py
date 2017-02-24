@@ -73,10 +73,7 @@ class MakePost(Handler):
 class MainHandler(Handler):
     def render_front_page(self):
         blogz = db.GqlQuery('SELECT * FROM Blog ORDER BY created DESC LIMIT 5')
-        list_of_blog_ids = []
-        for blog in blogz:
-            list_of_blog_ids += [blog.key().id()]
-        self.render('front_page.html', blogz=blogz, list_of_blog_ids=list_of_blog_ids)
+        self.render('front_page.html', blogz=blogz)
 
     def get(self):
         self.render_front_page()
